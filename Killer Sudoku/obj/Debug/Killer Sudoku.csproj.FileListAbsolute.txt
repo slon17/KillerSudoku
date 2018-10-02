@@ -1,7 +1,6 @@
 C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\bin\Debug\Killer Sudoku.exe.config
 C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\bin\Debug\Killer Sudoku.exe
 C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\bin\Debug\Killer Sudoku.pdb
-C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\obj\Debug\Killer Sudoku.csprojAssemblyReference.cache
 C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\obj\Debug\Killer_Sudoku.Properties.Resources.resources
 C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\obj\Debug\Killer Sudoku.csproj.GenerateResource.cache
 C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\obj\Debug\Killer Sudoku.csproj.CoreCompileInputs.cache

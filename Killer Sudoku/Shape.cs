@@ -9,18 +9,18 @@ namespace Killer_Sudoku
 {
     class Shape
     {
-        private ArrayList coordenatesToVisit;
+        private List<Coordenate> coordenatesToVisit;
         private int height;
         private int width;
 
         public Shape(int height, int width)
         {
-            coordenatesToVisit = new ArrayList();
+            coordenatesToVisit = new List<Coordenate>();
             this.height = height;
             this.width = width;
         }
 
-        public ArrayList getCoordenatesToVisit()
+        public List<Coordenate> getCoordenatesToVisit()
         {
             return coordenatesToVisit;
         }
@@ -29,6 +29,16 @@ namespace Killer_Sudoku
         {
             Coordenate newCoordenate = new Coordenate(x, y);
             coordenatesToVisit.Add(newCoordenate);
+        }
+
+        public int getHeight()
+        {
+            return height;
+        }
+
+        public int getWidth()
+        {
+            return width;
         }
     }
 }

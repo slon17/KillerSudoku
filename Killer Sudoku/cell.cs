@@ -25,5 +25,15 @@ namespace Killer_Sudoku
             coordenates = new Coordenate(coordenateX, coordenateY);
             this.isAvailable = isAvailable;
         }
+
+        public bool getIsAvailable()
+        {
+            return isAvailable;
+        }
+
+        public void setIsAvailable(bool value)
+        {
+            isAvailable = value;
+        }
     }
 }

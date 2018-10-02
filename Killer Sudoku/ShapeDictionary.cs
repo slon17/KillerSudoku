@@ -9,34 +9,53 @@ namespace Killer_Sudoku
 {
     class ShapeDictionary
     {
-        ArrayList shapes;
+        List<Shape> shapes;
 
         public ShapeDictionary()
         {
-            shapes = new ArrayList();
-            generateFigSquare();
-            generateFigL0();
-            generateFigL1();
-            generateFigL2();
-            generateFigL3();
-            generateFigDoubleLine0();
-            generateFigDoubleLine1();
-            generateFigTripleLine0();
-            generateFigTripleLine1();
-            generateFigQuadLine0();
-            generateFigQuadLine1();
-            generateFigShortL0();
-            generateFigShortL1();
-            generateFigShortL2();
-            generateFigShortL3();
-            generateFigT0();
-            generateFigT1();
-            generateFigT2();
-            generateFigT3();
-            generateFigS0();
-            generateFigS1();
-            generateFigS2();
-            generateFigS3();
+            shapes = new List<Shape>();
+            shapes.Add(generateFigSquare());
+            shapes.Add(generateFigL0());
+            shapes.Add(generateFigL1());
+            shapes.Add(generateFigL2());
+            shapes.Add(generateFigL3());
+            shapes.Add(generateFigDoubleLine0());
+            shapes.Add(generateFigDoubleLine1());
+            shapes.Add(generateFigTripleLine0());
+            shapes.Add(generateFigTripleLine1());
+            shapes.Add(generateFigQuadLine0());
+            shapes.Add(generateFigQuadLine1());
+            shapes.Add(generateFigShortL0());
+            shapes.Add(generateFigShortL1());
+            shapes.Add(generateFigShortL2());
+            shapes.Add(generateFigShortL3());
+            shapes.Add(generateFigT0());
+            shapes.Add(generateFigT1());
+            shapes.Add(generateFigT2());
+            shapes.Add(generateFigT3());
+            shapes.Add(generateFigS0());
+            shapes.Add(generateFigS1());
+            shapes.Add(generateFigS2());
+            shapes.Add(generateFigS3());
+        }
+
+        public List<Shape> getShapes()
+        {
+            return shapes;
+        }
+
+        public Shape getRandomShape()
+        {
+            if(shapes.Count() == 0)
+            {
+                return null;
+            }
+            else
+            {
+                Random random = new Random();
+                int randomShape = random.Next(shapes.Count());
+                return shapes[randomShape];
+            }
         }
 
         public Shape generateFigSquare()
@@ -255,6 +274,13 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
             newShape.addCoordenateToVisit(1, 2);
+            return newShape;
+        }
+
+        public Shape generateFigDot()
+        {
+            Shape newShape = new Shape(1, 1);
+            newShape.addCoordenateToVisit(0, 0);
             return newShape;
         }
     }

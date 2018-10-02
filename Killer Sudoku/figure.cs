@@ -8,17 +8,21 @@ namespace Killer_Sudoku
 {
     class Figure
     {
-        private ArraySegment<Cell> cells;
+        private List<Cell> cells;
         private int operation;
         private int operationResult;
         private int idFigure;
 
-        public Figure(int operation, int idFigure)
+        public Figure(int operation)
         {
-            cells = new ArraySegment<Cell>();
+            cells = new List<Cell>();
             this.operation = operation;
             operationResult = int.MaxValue;
-            this.idFigure = idFigure;
+        }
+
+        public List<Cell> getCells()
+        {
+            return cells;
         }
     }
 }
