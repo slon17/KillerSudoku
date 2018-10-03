@@ -60,7 +60,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigSquare()
         {
-            Shape newShape = new Shape(2, 2);
+            Shape newShape = new Shape(2, 2, 0);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(0, 1);
@@ -70,7 +70,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigL0()
         {
-            Shape newShape = new Shape(3, 2);
+            Shape newShape = new Shape(3, 2, 1);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(0, 2);
@@ -79,7 +79,7 @@ namespace Killer_Sudoku
         }
         public Shape generateFigL1()
         {
-            Shape newShape = new Shape(2, 3);
+            Shape newShape = new Shape(2, 3, 2);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(2, 0);
@@ -89,7 +89,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigL2()
         {
-            Shape newShape = new Shape(2, 3);
+            Shape newShape = new Shape(2, 3, 3);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
@@ -99,7 +99,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigL3()
         {
-            Shape newShape = new Shape(3, 2);
+            Shape newShape = new Shape(3, 2, 4);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(0, 2);
@@ -109,7 +109,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigDoubleLine0()
         {
-            Shape newShape = new Shape(2, 1);
+            Shape newShape = new Shape(2, 1, 5);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             return newShape;
@@ -117,7 +117,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigDoubleLine1()
         {
-            Shape newShape = new Shape(1, 2);
+            Shape newShape = new Shape(1, 2, 6);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             return newShape;
@@ -125,7 +125,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigTripleLine0()
         {
-            Shape newShape = new Shape(1, 3);
+            Shape newShape = new Shape(1, 3, 7);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(2, 0);
@@ -134,7 +134,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigTripleLine1()
         {
-            Shape newShape = new Shape(3, 1);
+            Shape newShape = new Shape(3, 1, 8);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(0, 2);
@@ -143,7 +143,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigQuadLine0()
         {
-            Shape newShape = new Shape(1, 4);
+            Shape newShape = new Shape(1, 4, 9);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(2, 0);
@@ -153,7 +153,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigQuadLine1()
         {
-            Shape newShape = new Shape(4, 1);
+            Shape newShape = new Shape(4, 1, 10);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(0, 2);
@@ -163,7 +163,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigShortL0()
         {
-            Shape newShape = new Shape(2, 2);
+            Shape newShape = new Shape(2, 2, 11);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
@@ -172,7 +172,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigShortL1()
         {
-            Shape newShape = new Shape(2, 2);
+            Shape newShape = new Shape(2, 2, 12);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(0, 1);
@@ -181,7 +181,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigShortL2()
         {
-            Shape newShape = new Shape(2, 2);
+            Shape newShape = new Shape(2, 2, 13);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(-1, 1);
@@ -190,7 +190,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigShortL3()
         {
-            Shape newShape = new Shape(2, 2);
+            Shape newShape = new Shape(2, 2, 14);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(-1, 0);
             newShape.addCoordenateToVisit(0, 1);
@@ -199,7 +199,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigT0()
         {
-            Shape newShape = new Shape(3, 2);
+            Shape newShape = new Shape(3, 2, 15);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
@@ -209,7 +209,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigT1()
         {
-            Shape newShape = new Shape(2, 3);
+            Shape newShape = new Shape(2, 3, 16);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(2, 0);
@@ -219,7 +219,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigT2()
         {
-            Shape newShape = new Shape(3, 2);
+            Shape newShape = new Shape(3, 2, 17);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(-1, 1);
@@ -229,7 +229,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigT3()
         {
-            Shape newShape = new Shape(2, 3);
+            Shape newShape = new Shape(2, 3, 18);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
@@ -239,7 +239,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigS0()
         {
-            Shape newShape = new Shape(2, 3);
+            Shape newShape = new Shape(2, 3, 19);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(1, 1);
@@ -249,7 +249,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigS1()
         {
-            Shape newShape = new Shape(3, 2);
+            Shape newShape = new Shape(3, 2, 20);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(-1, 1);
@@ -259,7 +259,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigS2()
         {
-            Shape newShape = new Shape(2, 3);
+            Shape newShape = new Shape(2, 3, 21);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(0, 1);
@@ -269,7 +269,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigS3()
         {
-            Shape newShape = new Shape(3, 2);
+            Shape newShape = new Shape(3, 2, 22);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
@@ -279,7 +279,7 @@ namespace Killer_Sudoku
 
         public Shape generateFigDot()
         {
-            Shape newShape = new Shape(1, 1);
+            Shape newShape = new Shape(1, 1, 23);
             newShape.addCoordenateToVisit(0, 0);
             return newShape;
         }

@@ -12,12 +12,14 @@ namespace Killer_Sudoku
         private List<Coordenate> coordenatesToVisit;
         private int height;
         private int width;
+        private int id;
 
-        public Shape(int height, int width)
+        public Shape(int height, int width, int id)
         {
             coordenatesToVisit = new List<Coordenate>();
             this.height = height;
             this.width = width;
+            this.id = id;
         }
 
         public List<Coordenate> getCoordenatesToVisit()
@@ -39,6 +41,11 @@ namespace Killer_Sudoku
         public int getWidth()
         {
             return width;
+        }
+
+        public int getId()
+        {
+            return id;
         }
     }
 }

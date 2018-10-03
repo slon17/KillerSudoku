@@ -54,7 +54,7 @@ namespace Killer_Sudoku
                         {
                             Console.WriteLine("entro");
                             shapeDictionary.getShapes().Add(shapeDictionary.generateFigDot());
-                            randomShape = shapeDictionary.getRandomShape();
+                            randomShape = shapeDictionary.getShapes()[0];
                         }
                         if (j + randomShape.getWidth()-1 < size && i + randomShape.getHeight()-1 < size)
                         {
@@ -73,13 +73,14 @@ namespace Killer_Sudoku
                                     revert(newFigure); //revertir usando figure cells
                                     j--;
                                     shapeDictionary.getShapes().Remove(randomShape);
-                                    Console.WriteLine(shapeDictionary.getShapes().Count());
+                                    //Console.WriteLine(shapeDictionary.getShapes().Count());
                                     break;
                                 }
                             }
                         }
                         else
                         {
+                            j--;
                             shapeDictionary.getShapes().Remove(randomShape);
                         }
                     }
@@ -107,6 +108,7 @@ namespace Killer_Sudoku
                 }
             }
         }
+
     }
 
     
