@@ -31,7 +31,7 @@ namespace Killer_Sudoku
                 List<Cell> newRow = new List<Cell>();
                 for (int j = 0; j < size; j++)
                 {
-                    Cell newCell = new Cell(j, i, true);
+                    Cell newCell = new Cell(j, i, true, size);
                     newRow.Add(newCell);
                 }
                 newMatrix.Add(newRow);
@@ -52,7 +52,7 @@ namespace Killer_Sudoku
                         Shape randomShape = shapeDictionary.getRandomShape();
                         if (shapeDictionary.getShapes().Count() == 0)
                         {
-                            Console.WriteLine("entro");
+                            //Console.WriteLine("entro");
                             shapeDictionary.getShapes().Add(shapeDictionary.generateFigDot());
                             randomShape = shapeDictionary.getShapes()[0];
                         }
@@ -66,16 +66,21 @@ namespace Killer_Sudoku
                                 {
                                     cells[i + randomShape.getCoordenatesToVisit()[k].getY()][j + randomShape.getCoordenatesToVisit()[k].getX()].setIsAvailable(false);
                                     newFigure.getCells().Add(cells[i + randomShape.getCoordenatesToVisit()[k].getY()][j + randomShape.getCoordenatesToVisit()[k].getX()]);
-                                    figures.Add(newFigure);
                                 }
                                 else
                                 {
                                     revert(newFigure); //revertir usando figure cells
+                                    newFigure = null;
                                     j--;
                                     shapeDictionary.getShapes().Remove(randomShape);
                                     //Console.WriteLine(shapeDictionary.getShapes().Count());
                                     break;
                                 }
+                            }
+                            if(newFigure != null)
+                            {
+                                figures.Add(newFigure);
+                                newFigure.setIdFigure(randomShape.getId());
                             }
                         }
                         else
@@ -98,15 +103,121 @@ namespace Killer_Sudoku
             }
         }
 
+        public void generateBoard()
+        {
+            Random random = new Random();
+            for(int i=0; i<size; i++)
+            {
+                Stack<int> stack = new Stack<int>();
+                for (int j=0; j<size; j++)
+                {
+                    if(cells.ElementAt(i).ElementAt(j).getAvailableNumbers().Count() != 0)
+                    {
+                        int randomNumberIdx = random.Next(cells.ElementAt(i).ElementAt(j).getAvailableNumbers().Count());
+                        int number = cells.ElementAt(i).ElementAt(j).getAvailableNumbers().ElementAt(randomNumberIdx);
+                        stack.Push(number);
+                        cells.ElementAt(i).ElementAt(j).setNumber(number);
+                        deleteNumberRow(number, i);
+                        deleteNumberColumn(number, j);
+                    }
+                    
+                    
+
+                    
+                    //cells.ElementAt(i).ElementAt(j).getAvailableNumbers().RemoveAt(randomNumberIdx);
+                    Console.WriteLine(cells.ElementAt(i).ElementAt(j).getNumber());
+                    printBoard();
+                }
+            }
+            printBoard();
+        }
+
+        public void deleteNumberRow(int number, int x)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < cells[x][i].getAvailableNumbers().Count(); j++)
+                {
+                    if (number == cells[x][i].getAvailableNumbers().ElementAt(j))
+                    {
+                        cells[x][i].getAvailableNumbers().RemoveAt(j);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void deleteNumberColumn(int number, int y)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < cells[i][y].getAvailableNumbers().Count(); j++)
+                {
+                    if (number == cells[i][y].getAvailableNumbers().ElementAt(j))
+                    {
+                        cells[i][y].getAvailableNumbers().RemoveAt(j);
+                        break;
+                    }
+                }
+            }
+        }
+
+        //prebas
+        public void generateAvailableNumbers()
+        {
+            for(int i=0; i<size; i++)
+            {
+                List<int> newAvailable = generateAvaialableAux();
+                for(int j=0; j<size; j++)
+                {
+                    cells[i][j].setAvailableNumbers(newAvailable);
+                }
+            }
+        }
+
+        //pruebas
+        public List<int> generateAvaialableAux()
+        {
+            List<int> newAvailableNumbers = new List<int>();
+            for(int i=0; i<size; i++)
+            {
+                newAvailableNumbers.Add(i);
+            }
+            return newAvailableNumbers;
+        }
+
+        public int getRandomNumber()
+        {
+            List<int> availableNumbers = new List<int>();
+            return 0;
+        }
+
+        //pruebas
+        public List<int> getAvailableColumnNumbers(int column, List<int> availableNumbers)
+        {
+            for(int i=0; i<size; i++)
+            {
+                if(cells[i][column].getNumber() != -1)
+                {
+                    //delete number from available numbers
+                }
+            }
+            return null;
+        }
+
         public void printBoard()
         {
             for(int i=0; i<size; i++)
             {
+                String row = "";
                 for(int j=0; j<size; j++)
                 {
-                    Console.WriteLine(cells[i][j].getIsAvailable());
+                    row += cells[i][j].getNumber() + " ";
+                    //Console.WriteLine(cells[i][j].getIsAvailable());
                 }
+                Console.WriteLine(row);
             }
+            //Console.WriteLine(figures.Count());
         }
 
     }

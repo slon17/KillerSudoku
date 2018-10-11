@@ -24,5 +24,10 @@ namespace Killer_Sudoku
         {
             return cells;
         }
+
+        public void setIdFigure(int idFigure)
+        {
+            this.idFigure = idFigure;
+        }
     }
 }

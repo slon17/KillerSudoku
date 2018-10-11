@@ -21,6 +21,7 @@ namespace Killer_Sudoku
             Console.WriteLine(r.Next(0));
             Board board = new Board(9);
             board.generateFigures();
+            board.generateBoard();
         }
     }
 }
