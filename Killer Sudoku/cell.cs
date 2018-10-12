@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Killer_Sudoku
         private Coordenate coordenates;
         private bool isAvailable;
         private List<int> availableNumbers;
+        private Color color;
         //private int form;
 
         public Cell(int number, int coordenateX, int coordenateY, bool isAvailable)
@@ -61,6 +63,16 @@ namespace Killer_Sudoku
         public void setAvailableNumbers(List<int> availableNumbers)
         {
             this.availableNumbers = availableNumbers;
+        }
+
+        public Color getColor()
+        {
+            return color;
+        }
+
+        public void setColor(Color colorNew)
+        {
+            color = colorNew;
         }
     }
 }

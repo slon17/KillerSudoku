@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Drawing;
 
 namespace Killer_Sudoku
 {
@@ -42,6 +43,7 @@ namespace Killer_Sudoku
         public void generateFigures()
         {
             Random random = new Random();
+            Random r = new Random();
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -58,6 +60,12 @@ namespace Killer_Sudoku
                         }
                         if (j + randomShape.getWidth()-1 < size && i + randomShape.getHeight()-1 < size)
                         {
+                            int red = r.Next(256);
+                            int green = r.Next(256);
+                            int blue = r.Next(256);
+                            //Console.WriteLine("red: " + red + " green: " + green + " blue: " + blue);
+                            Color BackColor = Color.FromArgb(120, red, green, blue);
+
                             Figure newFigure = new Figure(0);
                             for (int k = 0; k < randomShape.getCoordenatesToVisit().Count(); k++)
                             {
@@ -66,6 +74,8 @@ namespace Killer_Sudoku
                                 {
                                     cells[i + randomShape.getCoordenatesToVisit()[k].getY()][j + randomShape.getCoordenatesToVisit()[k].getX()].setIsAvailable(false);
                                     newFigure.getCells().Add(cells[i + randomShape.getCoordenatesToVisit()[k].getY()][j + randomShape.getCoordenatesToVisit()[k].getX()]);
+
+                                    cells[i + randomShape.getCoordenatesToVisit()[k].getY()][j + randomShape.getCoordenatesToVisit()[k].getX()].setColor(BackColor);
                                 }
                                 else
                                 {
@@ -100,6 +110,63 @@ namespace Killer_Sudoku
             for(int i=0; i<figure.getCells().Count(); i++)
             {
                 figure.getCells()[i].setIsAvailable(true);
+            }
+        }
+
+        public void generateNumbers()
+        {
+            int baseNumber = 0;
+            for(int i=0; i<size; i++)
+            {
+                for(int j=0; j<size; j++)
+                {
+                    cells[i][j].setNumber((baseNumber + j) % size);
+                }
+                baseNumber++;
+                printBoard();
+            }
+        }
+
+        public void suffleNumbers(int shuffleLevel)
+        {
+            Random random = new Random();
+            int randomSide;
+            for(int i=0; i<shuffleLevel; i++)
+            {
+                randomSide = random.Next(2);
+                if(randomSide == 0) //horizontal
+                {
+                    int row1 = random.Next(size);
+                    int row2 = random.Next(size);
+
+                    //switch rows
+                    switchRows(row1, row2);
+                }
+                else
+                {
+                    int column1 = random.Next(size);
+                    int column2 = random.Next(size);
+                    
+                    //switch columns
+                }
+                printBoard();
+            }
+        }
+
+        public void switchRows(int row1, int row2)
+        {
+            List<Cell> firstRow = cells[row1];
+            List<Cell> secondRow = cells[row2];
+
+            cells[row1] = secondRow;
+            cells[row2] = firstRow;
+        }
+
+        public void switchColumns(int column1, int column2)
+        {
+            for(int i=0; i<size; i++)
+            {
+
             }
         }
 
@@ -217,9 +284,14 @@ namespace Killer_Sudoku
                 }
                 Console.WriteLine(row);
             }
+            Console.WriteLine(" ");
             //Console.WriteLine(figures.Count());
         }
 
+        public List<List<Cell>> getCells()
+        {
+            return cells;
+        }
     }
 
     
