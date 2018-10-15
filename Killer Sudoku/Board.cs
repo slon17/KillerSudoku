@@ -51,7 +51,7 @@ namespace Killer_Sudoku
                     //Console.WriteLine(j);
                     if (cells[i][j].getIsAvailable())
                     {
-                        Shape randomShape = shapeDictionary.getRandomShape();
+                        Shape randomShape = shapeDictionary.getRandomShape(random);
                         if (shapeDictionary.getShapes().Count() == 0)
                         {
                             //Console.WriteLine("entro");
@@ -113,6 +113,41 @@ namespace Killer_Sudoku
             }
         }
 
+        public void asignNumberFigure()
+        {
+            Random random = new Random();
+            int idOperation = random.Next(2);
+
+            for (int i = 0; i < figures.Count(); i++)
+            {
+                if(idOperation == 0)
+                {
+                    figures.ElementAt(i).getSumValue();
+                }
+                else
+                {
+                    figures.ElementAt(i).getMultValue();
+                }
+                idOperation = random.Next(2);
+            }
+        }
+
+        public void asignSumFigure()
+        {
+            for(int i = 0; i<figures.Count(); i++)
+            {
+                Console.WriteLine(figures.ElementAt(i).getSumValue());
+            }
+        }
+
+        public void asignMultFigure()
+        {
+            for (int i = 0; i < figures.Count(); i++)
+            {
+                figures.ElementAt(i).getMultValue();
+            }
+        }
+
         public void generateNumbers()
         {
             int baseNumber = 0;
@@ -120,7 +155,7 @@ namespace Killer_Sudoku
             {
                 for(int j=0; j<size; j++)
                 {
-                    cells[i][j].setNumber((baseNumber + j) % size);
+                    cells[i][j].setNumber((baseNumber + j +1) % size + 1);
                 }
                 baseNumber++;
                 printBoard();
@@ -146,8 +181,9 @@ namespace Killer_Sudoku
                 {
                     int column1 = random.Next(size);
                     int column2 = random.Next(size);
-                    
+
                     //switch columns
+                    switchColumns(column1, column2);
                 }
                 printBoard();
             }
@@ -166,7 +202,11 @@ namespace Killer_Sudoku
         {
             for(int i=0; i<size; i++)
             {
+                int number1 = cells[i][column1].getNumber();
+                int number2 = cells[i][column2].getNumber();
 
+                cells[i][column1].setNumber(number2);
+                cells[i][column2].setNumber(number1);
             }
         }
 

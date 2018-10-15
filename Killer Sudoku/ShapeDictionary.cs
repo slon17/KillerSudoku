@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,7 +45,7 @@ namespace Killer_Sudoku
             return shapes;
         }
 
-        public Shape getRandomShape()
+        public Shape getRandomShape(Random random)
         {
             if(shapes.Count() == 0)
             {
@@ -52,7 +53,6 @@ namespace Killer_Sudoku
             }
             else
             {
-                Random random = new Random();
                 int randomShape = random.Next(shapes.Count());
                 return shapes[randomShape];
             }
@@ -65,6 +65,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
+            
+            int red = 52;
+            int green = 3;
+            int blue = 188;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -75,6 +83,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(0, 2);
             newShape.addCoordenateToVisit(1, 2);
+
+            int red = 122;
+            int green = 50;
+            int blue = 49;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
         public Shape generateFigL1()
@@ -84,6 +100,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(2, 0);
             newShape.addCoordenateToVisit(0, 1);
+
+            int red = 122;
+            int green = 50;
+            int blue = 49;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -94,6 +118,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
             newShape.addCoordenateToVisit(2, 1);
+
+            int red = 122;
+            int green = 50;
+            int blue = 49;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -104,6 +136,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(0, 2);
             newShape.addCoordenateToVisit(-1, 2);
+
+            int red = 122;
+            int green = 50;
+            int blue = 49;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -112,6 +152,14 @@ namespace Killer_Sudoku
             Shape newShape = new Shape(2, 1, 5);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
+
+            int red = 22;
+            int green = 131;
+            int blue = 85;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -120,6 +168,14 @@ namespace Killer_Sudoku
             Shape newShape = new Shape(1, 2, 6);
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
+
+            int red = 22;
+            int green = 131;
+            int blue = 85;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -129,6 +185,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(2, 0);
+
+            int red = 3;
+            int green = 43;
+            int blue = 134;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -138,6 +202,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(0, 2);
+
+            int red = 3;
+            int green = 43;
+            int blue = 134;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -148,6 +220,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(2, 0);
             newShape.addCoordenateToVisit(3, 0);
+
+            int red = 252;
+            int green = 222;
+            int blue = 144;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -158,6 +238,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(0, 2);
             newShape.addCoordenateToVisit(0, 3);
+
+            int red = 252;
+            int green = 222;
+            int blue = 144;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -167,6 +255,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
+
+            int red = 192;
+            int green = 215;
+            int blue = 67;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -176,6 +272,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(0, 1);
+
+            int red = 192;
+            int green = 215;
+            int blue = 67;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -185,6 +289,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(-1, 1);
+
+            int red = 192;
+            int green = 215;
+            int blue = 67;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -194,6 +306,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 0);
             newShape.addCoordenateToVisit(-1, 0);
             newShape.addCoordenateToVisit(0, 1);
+
+            int red = 192;
+            int green = 215;
+            int blue = 67;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -204,6 +324,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
             newShape.addCoordenateToVisit(0, 2);
+
+            int red = 194;
+            int green = 158;
+            int blue = 252;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -214,6 +342,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(2, 0);
             newShape.addCoordenateToVisit(1, 1);
+
+            int red = 194;
+            int green = 158;
+            int blue = 252;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -224,6 +360,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(-1, 1);
             newShape.addCoordenateToVisit(0, 2);
+
+            int red = 194;
+            int green = 158;
+            int blue = 252;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -234,6 +378,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
             newShape.addCoordenateToVisit(-1, 1);
+
+            int red = 194;
+            int green = 158;
+            int blue = 252;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -244,6 +396,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(1, 1);
             newShape.addCoordenateToVisit(2, 1);
+
+            int red = 53;
+            int green = 81;
+            int blue = 102;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -254,6 +414,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(-1, 1);
             newShape.addCoordenateToVisit(-1, 2);
+
+            int red = 53;
+            int green = 81;
+            int blue = 102;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -264,6 +432,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(1, 0);
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(-1, 1);
+
+            int red = 53;
+            int green = 81;
+            int blue = 102;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -274,6 +450,14 @@ namespace Killer_Sudoku
             newShape.addCoordenateToVisit(0, 1);
             newShape.addCoordenateToVisit(1, 1);
             newShape.addCoordenateToVisit(1, 2);
+
+            int red = 53;
+            int green = 81;
+            int blue = 102;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
 
@@ -281,6 +465,14 @@ namespace Killer_Sudoku
         {
             Shape newShape = new Shape(1, 1, 23);
             newShape.addCoordenateToVisit(0, 0);
+
+            int red = 222;
+            int green = 34;
+            int blue = 190;
+
+            Color BackColor = Color.FromArgb(120, red, green, blue);
+            newShape.setColor(BackColor);
+
             return newShape;
         }
     }

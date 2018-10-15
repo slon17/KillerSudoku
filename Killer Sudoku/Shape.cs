@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Killer_Sudoku
         private int height;
         private int width;
         private int id;
+        private Color color;
 
         public Shape(int height, int width, int id)
         {
@@ -31,6 +33,16 @@ namespace Killer_Sudoku
         {
             Coordenate newCoordenate = new Coordenate(x, y);
             coordenatesToVisit.Add(newCoordenate);
+        }
+
+        public void setColor(Color color)
+        {
+            this.color = color;
+        }
+
+        public Color getColor()
+        {
+            return color;
         }
 
         public int getHeight()

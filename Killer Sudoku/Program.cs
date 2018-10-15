@@ -22,13 +22,23 @@ namespace Killer_Sudoku
             Random r = new Random();
             Console.WriteLine(r.Next(0));
             Board board = new Board(9);
-            board.generateFigures();
+            
             //board.generateBoard();
             board.generateNumbers();
             board.suffleNumbers(30);
+            board.generateFigures();
+            board.asignNumberFigure();
 
             CreateLabels(form1, board, 9, 9);
             Application.Run(form1);
+
+            for(int i=0; i<23; i++)
+            {
+                int red = r.Next(256);
+                int green = r.Next(256);
+                int blue = r.Next(256);
+                Console.WriteLine("red: " + red + " green: " + green + " blue: " + blue);
+            }
 
         }
 
