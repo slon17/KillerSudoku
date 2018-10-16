@@ -102,7 +102,7 @@ namespace Killer_Sudoku
                 }
                 shapeDictionary = new ShapeDictionary();
             }
-            printBoard();
+            //printBoard();
         }
 
         public void revert(Figure figure)
@@ -158,7 +158,7 @@ namespace Killer_Sudoku
                     cells[i][j].setNumber((baseNumber + j +1) % size + 1);
                 }
                 baseNumber++;
-                printBoard();
+                //printBoard();
             }
         }
 
@@ -185,7 +185,7 @@ namespace Killer_Sudoku
                     //switch columns
                     switchColumns(column1, column2);
                 }
-                printBoard();
+                //printBoard();
             }
         }
 
@@ -328,9 +328,52 @@ namespace Killer_Sudoku
             //Console.WriteLine(figures.Count());
         }
 
+        public void printBoardBT()
+        {
+            for (int i = 0; i < size; i++)
+            {
+                String row = "";
+                for (int j = 0; j < size; j++)
+                {
+                    row += cells[i][j].getNumberBT() + " ";
+                    //Console.WriteLine(cells[i][j].getIsAvailable());
+                }
+                Console.WriteLine(row);
+            }
+            Console.WriteLine(" ");
+            //Console.WriteLine(figures.Count());
+        }
+
         public List<List<Cell>> getCells()
         {
             return cells;
+        }
+
+        public bool isFull()
+        {
+            //Console.WriteLine("is full");
+            for(int i=0; i<size; i++)
+            {
+                for(int j=0; j<size; j++)
+                {
+                    if(cells[i][j].getNumberBT() == -1)
+                    {
+                        Console.WriteLine("is full = false");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public List<Figure> getFigures()
+        {
+            return figures;
+        }
+
+        public int getSize()
+        {
+            return size;
         }
     }
 

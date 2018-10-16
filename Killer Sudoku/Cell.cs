@@ -76,5 +76,20 @@ namespace Killer_Sudoku
         {
             color = colorNew;
         }
+
+        public int getNumberBT()
+        {
+            return numberBT;
+        }
+
+        public void setNumberBT(int numberBT)
+        {
+            this.numberBT = numberBT;
+        }
+
+        public Coordenate getCoordenate()
+        {
+            return coordenates;
+        }
     }
 }
