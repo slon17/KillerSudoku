@@ -15,55 +15,69 @@ namespace Killer_Sudoku
             this.board = board;
         }
 
-        public Board resolve(Board board)
+        public void resolve(Board board)
         {
             //Console.WriteLine("entro");
             Random random = new Random();
+            if (board.getIsOver() == true)
+                return;
             if(board.isFull() == true)
             {
+                Console.WriteLine("end");
                 board.printBoardBT();
-                return board;
+                board.setIsOver(true);
+                return;
             }
             else
             {
                 Figure figure = null;
-                for (int i=0; i< board.getFigures().Count(); i++)
+                for (int i = 0; i < board.getFigures().Count(); i++)
                 {
                     figure = board.getFigures().ElementAt(i);
                     if (figure.notFull() && figure.getIsBusy() == false)
                     {
-                        Cell cell = null;
-                        bool isLastCell = false;
                         figure.setIsBusy(true);
-                        
-                        for(int j=0; j<figure.getCells().Count(); j++)
-                        {
-                            if(figure.getCells().ElementAt(j).getNumberBT() == -1)
-                            {
-                                cell = figure.getCells().ElementAt(j);
-                                if (j + 1 == figure.getCells().Count())
-                                {
-                                    isLastCell = true;
-                                }
-                                break;
-                            }
-                        }
-                        List<int> possibles = possibleNumbers(cell.getCoordenate().getY(), cell.getCoordenate().getX(), figure, isLastCell);
-                        if(possibles.Count() > 1)
-                        {
-                            int possibleNum = possibles.ElementAt(random.Next(possibles.Count() - 1));
-                            cell.setNumberBT(possibleNum);
-                            figure.setIsBusy(false);
-                            board.printBoardBT();
-                            resolve(board);
-                        }
-                        cell.setNumberBT(-1);
-                        figure.setIsBusy(false);
+                        break;
                     }
                 }
 
+                Cell cell = null;
+                bool isLastCell = false;
+
+
+                for (int j = 0; j < figure.getCells().Count(); j++)
+                {
+                    if (figure.getCells().ElementAt(j).getNumberBT() == -1)
+                    {
+                        cell = figure.getCells().ElementAt(j);
+                        if (j + 1 == figure.getCells().Count())
+                        {
+                            isLastCell = true;
+                        }
+                        break;
+                    }
+                }
+
+                List<int> possibles = possibleNumbers(cell.getCoordenate().getX(), cell.getCoordenate().getY(), figure, isLastCell);
+                    for (int p = 0; p< possibles.Count()-1; p++)
+                    {
+
+                        if (possibles[p] != -1)
+                        {
+                            //Console.WriteLine("Numero escogido " + possibleNum+"en x "+cell.getCoordenate().getX()+ " en y "+ cell.getCoordenate().getY());
+                            cell.setNumberBT(possibles[p]);
+                            figure.setIsBusy(false);
+                            //board.printBoardBT();
+                            resolve(board);
+                        }
+                            
+
+                    }
+                   
+                
+                cell.setNumberBT(-1);
+                figure.setIsBusy(false);
             }
-            return board;
         }
 
         public List<int> possibleNumbers(int i, int j, Figure figure, bool isLastCell)
@@ -75,14 +89,16 @@ namespace Killer_Sudoku
                 if(isInPossible(possibleNumbers, board.getCells()[k][j].getNumberBT()) && board.getCells()[k][j].getNumberBT() != -1)
                 {
                     //Console.WriteLine("borro columna " + possibleNumbers.Count()+ " numero borrado" + board.getCells()[k][j].getNumberBT());
-                    deletePossibleNumber(possibleNumbers, board.getCells()[k][j].getNumberBT());
-                    printPossible(possibleNumbers);
+                    //deletePossibleNumber(possibleNumbers, board.getCells()[k][j].getNumberBT());
+                    possibleNumbers.Remove(board.getCells()[k][j].getNumberBT());
+                    //printPossible(possibleNumbers);
                 }
                 if (isInPossible(possibleNumbers, board.getCells()[i][k].getNumberBT()) && board.getCells()[i][k].getNumberBT() != -1)
                 {
                     //Console.WriteLine("borro fila " + possibleNumbers.Count()+" numero borrado" + board.getCells()[i][k].getNumberBT());
-                    deletePossibleNumber(possibleNumbers, board.getCells()[i][k].getNumberBT());
-                    printPossible(possibleNumbers);
+                    //deletePossibleNumber(possibleNumbers, board.getCells()[i][k].getNumberBT());
+                    possibleNumbers.Remove(board.getCells()[i][k].getNumberBT());
+                    //printPossible(possibleNumbers);
                 }
             }
             /*
@@ -127,6 +143,7 @@ namespace Killer_Sudoku
                     }
                 }
             }*/
+            printPossible(possibleNumbers);
             return possibleNumbers;
         }
 
@@ -137,7 +154,8 @@ namespace Killer_Sudoku
             {
                 str += possible.ElementAt(i)+" ";
             }
-            Console.WriteLine(str);
+            //Console.WriteLine("Borrados ");
+            //Console.WriteLine(str);
         }
 
         public int operate(List<Cell> cells, int operation)

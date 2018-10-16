@@ -15,6 +15,7 @@ namespace Killer_Sudoku
         private ArrayList sectors;
         private ShapeDictionary shapeDictionary;
         private int size;
+        private bool isOver;
 
         public Board(int size)
         {
@@ -22,6 +23,7 @@ namespace Killer_Sudoku
             shapeDictionary = new ShapeDictionary();
             this.size = size;
             figures = new List<Figure>();
+            isOver = false;
         }
 
         public List<List<Cell>> generateCells(int size)
@@ -32,8 +34,9 @@ namespace Killer_Sudoku
                 List<Cell> newRow = new List<Cell>();
                 for (int j = 0; j < size; j++)
                 {
-                    Cell newCell = new Cell(j, i, true, size);
+                    Cell newCell = new Cell(i, j, true, size);
                     newRow.Add(newCell);
+                    //Console.WriteLine(newCell.getCoordenate().getX() + " " + newCell.getCoordenate().getY());
                 }
                 newMatrix.Add(newRow);
             }
@@ -58,7 +61,7 @@ namespace Killer_Sudoku
                             shapeDictionary.getShapes().Add(shapeDictionary.generateFigDot());
                             randomShape = shapeDictionary.getShapes()[0];
                         }
-                        if (j + randomShape.getWidth()-1 < size && i + randomShape.getHeight()-1 < size)
+                        if (i + randomShape.getWidth()-1 < size && j + randomShape.getHeight()-1 < size)
                         {
                             int red = r.Next(256);
                             int green = r.Next(256);
@@ -69,13 +72,13 @@ namespace Killer_Sudoku
                             Figure newFigure = new Figure(0);
                             for (int k = 0; k < randomShape.getCoordenatesToVisit().Count(); k++)
                             {
-                                if (j + randomShape.getCoordenatesToVisit()[k].getX() >= 0 &&
-                                    cells[i + randomShape.getCoordenatesToVisit()[k].getY()][j + randomShape.getCoordenatesToVisit()[k].getX()].getIsAvailable()) //que no se salga de la izquierda del board
+                                if (i + randomShape.getCoordenatesToVisit()[k].getX() >= 0 &&
+                                    cells[i + randomShape.getCoordenatesToVisit()[k].getX()][j + randomShape.getCoordenatesToVisit()[k].getY()].getIsAvailable()) //que no se salga de la izquierda del board
                                 {
-                                    cells[i + randomShape.getCoordenatesToVisit()[k].getY()][j + randomShape.getCoordenatesToVisit()[k].getX()].setIsAvailable(false);
-                                    newFigure.getCells().Add(cells[i + randomShape.getCoordenatesToVisit()[k].getY()][j + randomShape.getCoordenatesToVisit()[k].getX()]);
+                                    cells[i + randomShape.getCoordenatesToVisit()[k].getX()][j + randomShape.getCoordenatesToVisit()[k].getY()].setIsAvailable(false);
+                                    newFigure.getCells().Add(cells[i + randomShape.getCoordenatesToVisit()[k].getX()][j + randomShape.getCoordenatesToVisit()[k].getY()]);
 
-                                    cells[i + randomShape.getCoordenatesToVisit()[k].getY()][j + randomShape.getCoordenatesToVisit()[k].getX()].setColor(BackColor);
+                                    cells[i + randomShape.getCoordenatesToVisit()[k].getX()][j + randomShape.getCoordenatesToVisit()[k].getY()].setColor(BackColor);
                                 }
                                 else
                                 {
@@ -102,6 +105,7 @@ namespace Killer_Sudoku
                 }
                 shapeDictionary = new ShapeDictionary();
             }
+            printFigureCoord();
             //printBoard();
         }
 
@@ -110,6 +114,17 @@ namespace Killer_Sudoku
             for(int i=0; i<figure.getCells().Count(); i++)
             {
                 figure.getCells()[i].setIsAvailable(true);
+            }
+        }
+
+        public void printFigureCoord()
+        {
+            
+            for(int i=0; i<figures.Count(); i++)
+            {
+                Console.WriteLine("Figura");
+                for (int j = 0; j < figures[i].getCells().Count(); j++)
+                    Console.WriteLine("x: " + figures[i].getCells()[j].getCoordenate().getX()+" y: "+ figures[i].getCells()[j].getCoordenate().getY());
             }
         }
 
@@ -328,6 +343,21 @@ namespace Killer_Sudoku
             //Console.WriteLine(figures.Count());
         }
 
+        public void printBoardCoord()
+        {
+            for (int i = 0; i < size; i++)
+            {
+                String row = "";
+                for (int j = 0; j < size; j++)
+                {
+                    row += cells[i][j].getCoordenate().getX() +""+ cells[i][j].getCoordenate().getY()+" ";
+                    //Console.WriteLine(cells[i][j].getIsAvailable());
+                }
+                Console.WriteLine(row);
+            }
+            Console.WriteLine(" ");
+        }
+
         public void printBoardBT()
         {
             for (int i = 0; i < size; i++)
@@ -358,7 +388,7 @@ namespace Killer_Sudoku
                 {
                     if(cells[i][j].getNumberBT() == -1)
                     {
-                        Console.WriteLine("is full = false");
+                        //Console.WriteLine("is full = false");
                         return false;
                     }
                 }
@@ -374,6 +404,16 @@ namespace Killer_Sudoku
         public int getSize()
         {
             return size;
+        }
+
+        public bool getIsOver()
+        {
+            return isOver;
+        }
+
+        public void setIsOver(bool isOver)
+        {
+            this.isOver = isOver;
         }
     }
 
