@@ -10,12 +10,13 @@ namespace Killer_Sudoku
 {
     class Board
     {
-        private List<List<Cell>> cells;
+        private static List<List<Cell>> cells;
         private List<Figure> figures;
         private ArrayList sectors;
         private ShapeDictionary shapeDictionary;
         private int size;
         private bool isOver;
+        bool locked;
 
         public Board(int size)
         {
@@ -24,6 +25,7 @@ namespace Killer_Sudoku
             this.size = size;
             figures = new List<Figure>();
             isOver = false;
+            locked = false;
         }
 
         public List<List<Cell>> generateCells(int size)
@@ -47,6 +49,7 @@ namespace Killer_Sudoku
         {
             Random random = new Random();
             Random r = new Random();
+            
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
@@ -57,7 +60,7 @@ namespace Killer_Sudoku
                         Shape randomShape = shapeDictionary.getRandomShape(random);
                         if (shapeDictionary.getShapes().Count() == 0)
                         {
-                            //Console.WriteLine("entro");
+                            Console.WriteLine("dot");
                             shapeDictionary.getShapes().Add(shapeDictionary.generateFigDot());
                             randomShape = shapeDictionary.getShapes()[0];
                         }
@@ -122,9 +125,9 @@ namespace Killer_Sudoku
             
             for(int i=0; i<figures.Count(); i++)
             {
-                Console.WriteLine("Figura");
+                /*Console.WriteLine("Figura");
                 for (int j = 0; j < figures[i].getCells().Count(); j++)
-                    Console.WriteLine("x: " + figures[i].getCells()[j].getCoordenate().getX()+" y: "+ figures[i].getCells()[j].getCoordenate().getY());
+                    Console.WriteLine("x: " + figures[i].getCells()[j].getCoordenate().getX()+" y: "+ figures[i].getCells()[j].getCoordenate().getY());*/
             }
         }
 
@@ -151,7 +154,7 @@ namespace Killer_Sudoku
         {
             for(int i = 0; i<figures.Count(); i++)
             {
-                Console.WriteLine(figures.ElementAt(i).getSumValue());
+                figures.ElementAt(i).getSumValue();
             }
         }
 
@@ -160,6 +163,18 @@ namespace Killer_Sudoku
             for (int i = 0; i < figures.Count(); i++)
             {
                 figures.ElementAt(i).getMultValue();
+            }
+        }
+
+        public void asignDots()
+        {
+            for(int i=0; i<figures.Count(); i++)
+            {
+                if(figures[i].getIdFigure() == 23)
+                {
+                    //Console.WriteLine(figures[i].getCells()[0].getNumber());
+                    figures[i].getCells()[0].setNumberBT(figures[i].getOperationResult());
+                }
             }
         }
 
@@ -209,8 +224,17 @@ namespace Killer_Sudoku
             List<Cell> firstRow = cells[row1];
             List<Cell> secondRow = cells[row2];
 
-            cells[row1] = secondRow;
-            cells[row2] = firstRow;
+            for (int i=0; i<size; i++)
+            {
+                int num1 = firstRow[i].getNumber();
+                int num2 = secondRow[i].getNumber();
+
+                firstRow[i].setNumber(num2);
+                secondRow[i].setNumber(num1);
+            }
+
+            //cells[row1] = secondRow;
+            //cells[row2] = firstRow;
         }
 
         public void switchColumns(int column1, int column2)
@@ -391,6 +415,19 @@ namespace Killer_Sudoku
                         //Console.WriteLine("is full = false");
                         return false;
                     }
+                }
+            }
+            return true;
+        }
+
+        public bool isEqual()
+        {
+            for(int i=0; i<size; i++)
+            {
+                for(int j=0; j<size; j++)
+                {
+                    if (cells[i][j].getNumber() != cells[i][j].getNumberBT())
+                        return false;
                 }
             }
             return true;

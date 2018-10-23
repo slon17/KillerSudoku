@@ -32,6 +32,11 @@ namespace Killer_Sudoku
             this.idFigure = idFigure;
         }
 
+        public int getIdFigure()
+        {
+            return idFigure;
+        }
+
         public int getSumValue()
         {
             int value = 0;
@@ -40,19 +45,21 @@ namespace Killer_Sudoku
                 value += cells.ElementAt(i).getNumber();
             }
             operation = 0;
-            operationResult = value;
+            //Console.WriteLine("value: " + value + " operation result: " + operationResult);
+            this.operationResult = value;
+            //Console.WriteLine("value: "+ value + " operation result: " + operationResult);
             return value;
         }
 
         public int getMultValue()
         {
-            int value = 0;
+            int value = 1;
             for (int i = 0; i < cells.Count(); i++)
             {
                 value = value * cells.ElementAt(i).getNumber();
             }
             operation = 1;
-            operationResult = value;
+            this.operationResult = value;
             return value;
         }
 

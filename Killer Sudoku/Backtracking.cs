@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Killer_Sudoku
@@ -17,13 +18,16 @@ namespace Killer_Sudoku
 
         public void resolve(Board board)
         {
-            //Console.WriteLine("entro");
+            //Console.WriteLine(Thread.CurrentThread.Name);
             Random random = new Random();
-            if (board.getIsOver() == true)
+            board.asignDots();
+            if (board.getIsOver() == true) { 
                 return;
-            if(board.isFull() == true)
+            }
+            if (board.isFull() == true /*&& board.isEqual()*/)
             {
                 Console.WriteLine("end");
+                Console.WriteLine("entro");
                 board.printBoardBT();
                 board.setIsOver(true);
                 return;
@@ -34,11 +38,15 @@ namespace Killer_Sudoku
                 for (int i = 0; i < board.getFigures().Count(); i++)
                 {
                     figure = board.getFigures().ElementAt(i);
-                    if (figure.notFull() && figure.getIsBusy() == false)
+                    if (figure.getIdFigure() != 23)
                     {
-                        figure.setIsBusy(true);
-                        break;
+                        if (figure.notFull() && figure.getIsBusy() == false)
+                        {
+                            figure.setIsBusy(true);
+                            break;
+                        }
                     }
+                    
                 }
 
                 Cell cell = null;
@@ -59,22 +67,26 @@ namespace Killer_Sudoku
                 }
 
                 List<int> possibles = possibleNumbers(cell.getCoordenate().getX(), cell.getCoordenate().getY(), figure, isLastCell);
-                    for (int p = 0; p< possibles.Count()-1; p++)
+                for (int p = 0; p < possibles.Count(); p++)
+                {
+
+                    if (possibles[p] != -1)
                     {
-
-                        if (possibles[p] != -1)
-                        {
-                            //Console.WriteLine("Numero escogido " + possibleNum+"en x "+cell.getCoordenate().getX()+ " en y "+ cell.getCoordenate().getY());
-                            cell.setNumberBT(possibles[p]);
-                            figure.setIsBusy(false);
-                            //board.printBoardBT();
-                            resolve(board);
-                        }
-                            
-
+                        //Console.WriteLine("Numero escogido " + possibleNum+"en x "+cell.getCoordenate().getX()+ " en y "+ cell.getCoordenate().getY());
+                        cell.setNumberBT(possibles[p]);
+                        figure.setIsBusy(false);
+                        //board.printBoardBT();
+                        
+                        resolve(board);
                     }
-                   
-                
+                    else
+                    {
+                        //Console.WriteLine(possibles[possibles.Count()-1]);
+                    }
+
+                }
+                //board.printBoardBT();
+
                 cell.setNumberBT(-1);
                 figure.setIsBusy(false);
             }
@@ -83,67 +95,87 @@ namespace Killer_Sudoku
         public List<int> possibleNumbers(int i, int j, Figure figure, bool isLastCell)
         {
             List<int> possibleNumbers = generatePossibleNumbers();
-            for(int k=0; k<board.getSize(); k++)
+            bool bandera = true;
+            if (figure.getCells().Count() == 1)
             {
+                /*if (possibleNumbers.Contains(figure.getOperationResult()))
+                {
+                    possibleNumbers.Clear();
+                    possibleNumbers.Add(figure.getOperationResult());
+                    possibleNumbers.Add(-1);
+                    Console.WriteLine("operation result: " + figure.getOperationResult() + " possible number[0] " + possibleNumbers[0]);
+                    bandera = false;
+                }*/
                 
-                if(isInPossible(possibleNumbers, board.getCells()[k][j].getNumberBT()) && board.getCells()[k][j].getNumberBT() != -1)
-                {
-                    //Console.WriteLine("borro columna " + possibleNumbers.Count()+ " numero borrado" + board.getCells()[k][j].getNumberBT());
-                    //deletePossibleNumber(possibleNumbers, board.getCells()[k][j].getNumberBT());
-                    possibleNumbers.Remove(board.getCells()[k][j].getNumberBT());
-                    //printPossible(possibleNumbers);
-                }
-                if (isInPossible(possibleNumbers, board.getCells()[i][k].getNumberBT()) && board.getCells()[i][k].getNumberBT() != -1)
-                {
-                    //Console.WriteLine("borro fila " + possibleNumbers.Count()+" numero borrado" + board.getCells()[i][k].getNumberBT());
-                    //deletePossibleNumber(possibleNumbers, board.getCells()[i][k].getNumberBT());
-                    possibleNumbers.Remove(board.getCells()[i][k].getNumberBT());
-                    //printPossible(possibleNumbers);
-                }
+                
             }
-            /*
-            int partialTotal = operate(figure.getCells(), figure.getOperation());
-            for(int k=0; k<possibleNumbers.Count(); k++)
-            {
-                if (possibleNumbers[k] != -1)
+            if(bandera) {
+                for (int k = 0; k < board.getSize(); k++)
                 {
-                    if(figure.getOperation() == 0)
+
+                    if (isInPossible(possibleNumbers, board.getCells()[k][j].getNumberBT()) && board.getCells()[k][j].getNumberBT() != -1)
                     {
-                        if (isLastCell)
-                        {
-                            if(partialTotal+possibleNumbers[k] != figure.getOperationResult())
-                            {
-                                deletePossibleNumber(possibleNumbers, possibleNumbers[k]);
-                            }
-                        }
-                        else
-                        {
-                            if(partialTotal+possibleNumbers[k] >= figure.getOperationResult())
-                            {
-                                deletePossibleNumber(possibleNumbers, possibleNumbers[k]);
-                            }
-                        }
+                        //deletePossibleNumber(possibleNumbers, board.getCells()[k][j].getNumberBT());
+                        possibleNumbers.Remove(board.getCells()[k][j].getNumberBT());
+                        //printPossible(possibleNumbers);
                     }
-                    else if(figure.getOperation() == 1)
+                    if (isInPossible(possibleNumbers, board.getCells()[i][k].getNumberBT()) && board.getCells()[i][k].getNumberBT() != -1)
                     {
-                        if (isLastCell)
-                        {
-                            if (partialTotal * possibleNumbers[k] != figure.getOperationResult())
-                            {
-                                deletePossibleNumber(possibleNumbers, possibleNumbers[k]);
-                            }
-                        }
-                        else
-                        {
-                            if (partialTotal * possibleNumbers[k] > figure.getOperationResult())
-                            {
-                                deletePossibleNumber(possibleNumbers, possibleNumbers[k]);
-                            }
-                        }
+                        //deletePossibleNumber(possibleNumbers, board.getCells()[i][k].getNumberBT());
+                        possibleNumbers.Remove(board.getCells()[i][k].getNumberBT());
+                        //printPossible(possibleNumbers);
                     }
                 }
-            }*/
-            printPossible(possibleNumbers);
+                
+                int partialTotal = operate(figure.getCells(), figure.getOperation());
+                for (int k = 0; k < possibleNumbers.Count(); k++)
+                {
+                    if (possibleNumbers[k] != -1)
+                    {
+                        if (figure.getOperation() == 0)
+                        {
+                            //Console.WriteLine("entro suma");
+                            if (isLastCell)
+                            {
+                                //Console.WriteLine("operation result " + figure.getOperationResult() + " figure result " + partialTotal + possibleNumbers[k]);
+                                if (partialTotal + possibleNumbers[k] != figure.getOperationResult())
+                                {
+                                    
+                                    deletePossibleNumber(possibleNumbers, possibleNumbers[k]);
+                                }
+                            }
+                            else
+                            {
+                                if (partialTotal + possibleNumbers[k] >= figure.getOperationResult())
+                                {
+                                    deletePossibleNumber(possibleNumbers, possibleNumbers[k]);
+                                }
+                            }
+                        }
+                        else if (figure.getOperation() == 1)
+                        {
+                            //Console.WriteLine(figure.getOperationResult());
+                            if (isLastCell)
+                            {
+                                if (partialTotal * possibleNumbers[k] != figure.getOperationResult())
+                                {
+                                    deletePossibleNumber(possibleNumbers, possibleNumbers[k]);
+                                }
+                            }
+                            else
+                            {
+                                if (partialTotal * possibleNumbers[k] > figure.getOperationResult())
+                                {
+                                    deletePossibleNumber(possibleNumbers, possibleNumbers[k]);
+                                }
+                            }
+                        }
+
+                    }
+                }
+                
+            }
+            //printPossible(possibleNumbers);
             return possibleNumbers;
         }
 
