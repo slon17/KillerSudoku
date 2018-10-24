@@ -41,6 +41,7 @@ namespace Killer_Sudoku
             this.tbarSize = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbarClues)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarSize)).BeginInit();
@@ -51,12 +52,12 @@ namespace Killer_Sudoku
             this.panel1.Location = new System.Drawing.Point(10, 11);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1434, 545);
+            this.panel1.Size = new System.Drawing.Size(1883, 717);
             this.panel1.TabIndex = 0;
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(60, 576);
+            this.btnGenerate.Location = new System.Drawing.Point(42, 769);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(219, 61);
             this.btnGenerate.TabIndex = 1;
@@ -66,7 +67,7 @@ namespace Killer_Sudoku
             // 
             // btnResolve
             // 
-            this.btnResolve.Location = new System.Drawing.Point(60, 653);
+            this.btnResolve.Location = new System.Drawing.Point(42, 866);
             this.btnResolve.Name = "btnResolve";
             this.btnResolve.Size = new System.Drawing.Size(219, 61);
             this.btnResolve.TabIndex = 2;
@@ -77,7 +78,7 @@ namespace Killer_Sudoku
             // tbarClues
             // 
             this.tbarClues.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.tbarClues.Location = new System.Drawing.Point(390, 669);
+            this.tbarClues.Location = new System.Drawing.Point(372, 882);
             this.tbarClues.Maximum = 100;
             this.tbarClues.Name = "tbarClues";
             this.tbarClues.Size = new System.Drawing.Size(309, 45);
@@ -89,7 +90,7 @@ namespace Killer_Sudoku
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(512, 644);
+            this.label1.Location = new System.Drawing.Point(494, 857);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 18);
             this.label1.TabIndex = 4;
@@ -99,7 +100,7 @@ namespace Killer_Sudoku
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Stencil", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(928, 711);
+            this.label2.Location = new System.Drawing.Point(1327, 901);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label2.Size = new System.Drawing.Size(488, 57);
@@ -110,7 +111,7 @@ namespace Killer_Sudoku
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(512, 717);
+            this.label3.Location = new System.Drawing.Point(494, 946);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 18);
             this.label3.TabIndex = 6;
@@ -118,7 +119,7 @@ namespace Killer_Sudoku
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(390, 744);
+            this.trackBar1.Location = new System.Drawing.Point(372, 973);
             this.trackBar1.Maximum = 20;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
@@ -130,7 +131,7 @@ namespace Killer_Sudoku
             // tbarSize
             // 
             this.tbarSize.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.tbarSize.Location = new System.Drawing.Point(390, 597);
+            this.tbarSize.Location = new System.Drawing.Point(372, 785);
             this.tbarSize.Maximum = 19;
             this.tbarSize.Minimum = 3;
             this.tbarSize.Name = "tbarSize";
@@ -143,7 +144,7 @@ namespace Killer_Sudoku
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(512, 576);
+            this.label4.Location = new System.Drawing.Point(494, 764);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 18);
             this.label4.TabIndex = 9;
@@ -151,7 +152,7 @@ namespace Killer_Sudoku
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(60, 728);
+            this.btnReset.Location = new System.Drawing.Point(42, 957);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(219, 61);
             this.btnReset.TabIndex = 10;
@@ -159,11 +160,22 @@ namespace Killer_Sudoku
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(380, 817);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(301, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "3    4    5    6    7    8    9  10  11  12  13  14  15  16  17  18  19";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1455, 801);
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbarSize);
@@ -177,7 +189,8 @@ namespace Killer_Sudoku
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Tamaño";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Killer Sudoku";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbarClues)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -201,6 +214,7 @@ namespace Killer_Sudoku
         private TrackBar tbarSize;
         private Label label4;
         private Button btnReset;
+        private Label label6;
     }
 }
 
