@@ -36,6 +36,8 @@ namespace Killer_Sudoku
             locked = false;
         }
 
+        
+
         public List<List<Cell>> generateCells(int size)
         {
             List<List<Cell>> newMatrix = new List<List<Cell>>();
@@ -197,6 +199,17 @@ namespace Killer_Sudoku
                 }
                 baseNumber++;
                 //printBoard();
+            }
+        }
+
+        public void setClues(double porcentaje)
+        {
+            double numPistas = figures.Count()*(double)(porcentaje/100.0);
+            Console.WriteLine(figures.Count());
+            Console.WriteLine(numPistas);
+            for (int i = 0; i < numPistas; i++)
+            {
+                figures[i].getCells()[0].setNumberBT(figures[i].getCells()[0].getNumber());
             }
         }
 

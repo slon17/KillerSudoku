@@ -7,3 +7,4 @@ C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\obj\Debug\Killer Sudoku.
 C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\obj\Debug\Killer Sudoku.exe
 C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\obj\Debug\Killer Sudoku.pdb
 C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\obj\Debug\Killer Sudoku.csprojAssemblyReference.cache
+C:\Users\Paulo\source\repos\Killer Sudoku\Killer Sudoku\obj\Debug\Killer_Sudoku.Form1.resources
