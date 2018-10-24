@@ -49,6 +49,7 @@
     <Compile Include="Backtracking.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="XMLHelper.cs" />
     <Compile Include="ShapeDictionary.cs" />
     <Compile Include="Coordenate.cs" />
     <Compile Include="Figure.cs" />

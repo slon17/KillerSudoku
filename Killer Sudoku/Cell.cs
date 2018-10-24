@@ -4,11 +4,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Killer_Sudoku
 {
-    class Cell
+    public class Cell
     {
+        [XmlAttribute]
         private int number;
         private int numberBT;
         private Coordenate coordenates;

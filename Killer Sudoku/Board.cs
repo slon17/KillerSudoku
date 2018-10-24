@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Drawing;
+using System.Xml.Serialization;
 
 namespace Killer_Sudoku
 {
-    class Board
+    [XmlRoot("Board", Namespace = "http://www.cpandl.com", IsNullable = false)]
+    public class Board
     {
+        [XmlArrayAttribute("Cells")]
         private static List<List<Cell>> cells;
         private List<Figure> figures;
         private ArrayList sectors;
@@ -17,6 +20,11 @@ namespace Killer_Sudoku
         private int size;
         private bool isOver;
         bool locked;
+
+        public Board()
+        {
+
+        }
 
         public Board(int size)
         {

@@ -24,49 +24,40 @@ namespace Killer_Sudoku
             Console.WriteLine(r.Next(0));
             Board board = new Board(size);
             
-            //board.generateBoard();
             board.generateNumbers();
-            //board.printBoardCoord();
-            board.printBoard();
+
             board.suffleNumbers(30);
-            //board.printBoardCoord();
+
             board.printBoard();
             
             board.generateFigures();
-            //Console.WriteLine(board.getFigures()[0].getCells()[0].getCoordenate().getX()+" "+ board.getFigures()[0].getCells()[0].getCoordenate().getY());
+
             board.asignNumberFigure();
 
             Backtracking backtracking = new Backtracking(board);
             
             List<Thread> list = new List<Thread>();
-            for(int i=0; i<3; i++)
+            for(int i=0; i<5; i++)
             {
                 Thread th = new Thread(()=>method(backtracking, board));
                 th.Name = i.ToString();
                 list.Add(th);
             }
 
-            for(int i=0; i<3; i++)
+            for(int i=0; i<5; i++)
             {
                 list[i].Start();
                 Thread.Sleep(10);
-                //list[i].Join();
+                list[i].Join();
                 Console.WriteLine(i);
             }
             
             //backtracking.resolve(board);
             CreateLabels(form1, board, size, size);
-            
-            //Application.Run(form1);
+            board.printBoardBT();
 
-            /*
-            for(int i=0; i<23; i++)
-            {
-                int red = r.Next(256);
-                int green = r.Next(256);
-                int blue = r.Next(256);
-                Console.WriteLine("red: " + red + " green: " + green + " blue: " + blue);
-            }*/
+            //XMLHelper.WriteXMLBoard(board);
+            Application.Run(form1);
 
         }
 
@@ -81,15 +72,33 @@ namespace Killer_Sudoku
                     // Here you can modify the value of the textbox which is at textBoxes[i]
                     
                     Label label = new Label();
-                    label.BackColor = cells[j][i].getColor();
+                    label.BackColor = cells[i][j].getColor();
                     label.Name = "label" + i + "" + j;
                     label.Text = cells[j][i].getNumber().ToString();
                     label.Size = new Size(50, 50);
-                    label.Location = new System.Drawing.Point(cells[j][i].getCoordenate().getX() *50, cells[j][i].getCoordenate().getY() * 50);
+                    label.Location = new Point(cells[i][j].getCoordenate().getX() *50, cells[i][j].getCoordenate().getY() * 50);
                     labels.Add(label);
+                    
                 }
             }
-            for (int i = 0; i < n*m; i++)
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    // Here you can modify the value of the textbox which is at textBoxes[i]
+
+                    Label label = new Label();
+                    label.BackColor = cells[i][j].getColor();
+                    label.Name = "label" + i*2 + "" + j*2;
+                    label.Text = cells[j][i].getNumberBT().ToString();
+                    label.Size = new Size(50, 50);
+                    label.Location = new Point(cells[i][j].getCoordenate().getX() * 50+500, cells[i][j].getCoordenate().getY() * 50);
+                    labels.Add(label);
+
+                }
+            }
+            for (int i = 0; i < 2*n*m; i++)
             {
                 
                     form.panel1.Controls.Add(labels[i]);

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Killer_Sudoku
 {
-    class Coordenate
+    public class Coordenate
     {
+        [XmlAttribute]
         private int x;
         private int y;
 

@@ -5,11 +5,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Killer_Sudoku
 {
     class Shape
     {
+        [XmlAttribute]
         private List<Coordenate> coordenatesToVisit;
         private int height;
         private int width;

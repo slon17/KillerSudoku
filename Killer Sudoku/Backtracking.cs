@@ -18,16 +18,17 @@ namespace Killer_Sudoku
 
         public void resolve(Board board)
         {
-            //Console.WriteLine(Thread.CurrentThread.Name);
+            //board.printBoardBT();
             Random random = new Random();
             board.asignDots();
-            if (board.getIsOver() == true) { 
+            if (board.getIsOver() == true) {
+                board.printBoardBT();
                 return;
             }
             if (board.isFull() == true /*&& board.isEqual()*/)
             {
+                Console.WriteLine(board.getIsOver());
                 Console.WriteLine("end");
-                Console.WriteLine("entro");
                 board.printBoardBT();
                 board.setIsOver(true);
                 return;
@@ -70,7 +71,7 @@ namespace Killer_Sudoku
                 for (int p = 0; p < possibles.Count(); p++)
                 {
 
-                    if (possibles[p] != -1)
+                    if (possibles[p] != -1 && board.getIsOver()==false)
                     {
                         //Console.WriteLine("Numero escogido " + possibleNum+"en x "+cell.getCoordenate().getX()+ " en y "+ cell.getCoordenate().getY());
                         cell.setNumberBT(possibles[p]);
@@ -79,16 +80,13 @@ namespace Killer_Sudoku
                         
                         resolve(board);
                     }
-                    else
-                    {
-                        //Console.WriteLine(possibles[possibles.Count()-1]);
-                    }
-
                 }
                 //board.printBoardBT();
-
-                cell.setNumberBT(-1);
-                figure.setIsBusy(false);
+                if (board.getIsOver() == false)
+                {
+                    cell.setNumberBT(-1);
+                    figure.setIsBusy(false);
+                }
             }
         }
 
